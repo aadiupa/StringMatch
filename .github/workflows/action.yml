@@ -14,4 +14,4 @@ jobs:
           accessToken: ${{ secrets.LD_ACCESS_TOKEN }}
           projKey: default
           debug: true
-          repoName: https://github.com/aadiupa/StringMatch
+          repoName: aadiupa/StringMatch
