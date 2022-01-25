@@ -30,6 +30,7 @@ jobs:
 
       - name: Retrieve build names
         run: |
+           chmod +x ./script.sh
            echo "::set-output name=$(./script.sh)"
         id: version
       - name: get the output  
