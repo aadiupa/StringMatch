@@ -36,5 +36,7 @@ jobs:
           JSON="${JSON//$'\n'/'%0A'}"
           JSON="${JSON//$'\r'/'%0D'}"
           echo "::set-output name=deployment-matrix::$JSON"
+      - name: print above
+        run: steps.export-deployment-matrix.output.deployment-matrix
            
 
