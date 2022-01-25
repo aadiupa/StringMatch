@@ -31,10 +31,10 @@ jobs:
       - name: Export deployment matrix 
         id: export-deployment-matrix
         run: |
-          JSON="$(cat ./script.sh)"
-          #JSON="${JSON//'%'/'%25'}"
-          #JSON="${JSON//$'\n'/'%0A'}"
-          #JSON="${JSON//$'\r'/'%0D'}"
+          JSON="$(cat ./all_projects)"
+          JSON="${JSON//'%'/'%25'}"
+          JSON="${JSON//$'\n'/'%0A'}"
+          JSON="${JSON//$'\r'/'%0D'}"
           echo "::set-output name=deployment-matrix::$JSON"
       - name: print above
         run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
