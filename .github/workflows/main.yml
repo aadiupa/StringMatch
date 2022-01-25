@@ -40,4 +40,4 @@ jobs:
         run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
       - name: loop
         run: |
-           while read -r line ; do echo "ad $line"; done < ./projects
+           while read -r line ; do echo "ad $line"; done < ./all_projects
