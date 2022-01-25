@@ -30,9 +30,11 @@ jobs:
 
       - name: Retrieve build names
         run: >
-           while read line
+           FILENAME="all_projects"
+           LINES="$(cat $FILENAME)
+           for LINE in $LINES
            do
-           echo "$line"
-           done < ./all_projects
+                echo "$LINE"
+           done
            
 
