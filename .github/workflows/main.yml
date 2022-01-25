@@ -34,4 +34,9 @@ jobs:
       - name: Run a multi-line script
         run: |
           cat ./all_projects
+          steps:
+      - name: run loop
+        env:
+          FILES: ./all_projects
+        run: for f in $FILES; do echo "$f"; done
 
