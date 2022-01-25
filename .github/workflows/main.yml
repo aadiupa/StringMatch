@@ -29,10 +29,10 @@ jobs:
         run: echo Hello, world!
 
       - name: Retrieve build names
-        run: |
-           chmod +x ./script.sh
-           build=$(cat ./all_projects) >> $GITHUB_ENV
-        id: version
-      - name: get the output  
-        run: echo ${{ env.build }}
+        run: >
+           while read line
+           do
+           echo "$line"
+           done < ./all_projects
+           
 
