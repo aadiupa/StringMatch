@@ -30,9 +30,6 @@ jobs:
 
       - name: Retrieve build names
         run: >
-           while read -r line
-           do
-            echo $line
-           done < ./all_projects
+           while read -r line ; do echo $line; done < ./all_projects
            
 
