@@ -34,5 +34,5 @@ jobs:
            echo "::set-output name=$(./script.sh)"
         id: version
       - name: get the output  
-        run: echo ${{ steps.version.outputs.name}}
+        run: echo ${{ steps.version.outputs.name }}
 
