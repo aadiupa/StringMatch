@@ -34,5 +34,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           cat ./proe
-          pwd
-          echo ${{ env.file }}
+          while IFS= read -r line; do echo "Text read from file: $line" done < all_projects
+
