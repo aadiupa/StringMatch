@@ -36,4 +36,4 @@ jobs:
         run: |
           cat ./proe
           pwd
-          echo ${{ strategy.files }}
+          echo ${{ strategy.matrix.manifest }}
