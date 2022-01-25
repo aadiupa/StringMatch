@@ -31,8 +31,8 @@ jobs:
       - name: Retrieve build names
         run: |
            chmod +x ./script.sh
-           echo "::set-output name=$(./script.sh)"
+           echo "::set-output name=TAG_NAME::$(./script.sh)"
         id: version
       - name: get the output  
-        run: echo ${{ steps.version.outputs.name }}
+        run: echo ${{ steps.version.outputs.TAG_NAME }}
 
