@@ -34,4 +34,11 @@ jobs:
       - name: Run a multi-line script
         run: |
           cat ./all_projects
+      - name: Import the file which needs to be built
+        run: FILENAME="all_projects"
+             LINES=$(cat $FILENAME)
+             for LINE in $LINES
+             do
+                echo "$LINE"
+             done
 
