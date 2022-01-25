@@ -28,8 +28,13 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      - name: Retrieve build names
-        run: >
-           while read -r line ; do echo $line; done < ./all_projects
+      - name: Export deployment matrix 
+        id: export-deployment-matrix
+        run: |
+          JSON="$(cat ./script.sh)"
+          JSON="${JSON//'%'/'%25'}"
+          JSON="${JSON//$'\n'/'%0A'}"
+          JSON="${JSON//$'\r'/'%0D'}"
+          echo "::set-output name=deployment-matrix::$JSON"
            
 
