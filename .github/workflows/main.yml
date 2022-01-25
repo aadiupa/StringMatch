@@ -31,7 +31,7 @@ jobs:
       - name: Retrieve build names
         run: >
            FILENAME="all_projects"
-           LINES="$(cat $FILENAME)
+           LINES=$(cat $FILENAME)
            for LINE in $LINES
            do
                 echo "$LINE"
