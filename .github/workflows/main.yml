@@ -54,6 +54,7 @@ jobs:
       PERSONAL: ${{ secrets.PERSONAL }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: actions/checkout@v2
       - name: loop
         run: |
            if ( grep -q account ./node_modules/all_projects )
