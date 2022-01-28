@@ -67,4 +67,4 @@ jobs:
           #gh auth login --with-token env.PERSONAL
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
           gh auth status
-          gh workflow run wf3.yml --ref my-branch -f stage=dev 
+          gh workflow run wf3.yml -f stage=dev 
