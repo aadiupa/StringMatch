@@ -63,7 +63,8 @@ jobs:
            #while read -r line ; do echo "ad $line"; done < ./all_projects
       - name: run another workflow
         run: |
-          gh auth login --with-token env.PERSONAL
+          #gh auth login --with-token env.PERSONAL
+          echo env.PERSONAL | gh auth login --with-token
           gh auth status
           #gh workflow run wf3.yml -f stage=dev
 
