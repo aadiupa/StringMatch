@@ -40,7 +40,7 @@ jobs:
         run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
       - name: loop
         run: |
-           if ( grep -q account )
+           if ( grep -q account ./all_projects )
            then
            echo "hi"
            fi
