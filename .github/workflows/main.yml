@@ -30,11 +30,13 @@ jobs:
            echo "job2"
            fi
            #while read -r line ; do echo "ad $line"; done < ./all_projects
-      - name: run another workflow
+      - name: Setup everything
         run: |
           #gh auth login --with-token env.PERSONAL
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
           # gh auth status
           gh run list --workflow=wf3.yml
           sleep 5
-          gh workflow run wf3.yml --ref master -f stage=dev
+          
+      - name: run another another workflow
+        run: gh workflow run wf3.yml --ref master -f stage=dev
