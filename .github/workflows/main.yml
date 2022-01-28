@@ -61,5 +61,6 @@ jobs:
       - name: run another workflow
         run: |
           gh auth login --with-token ${{ secrets.PERSONAL }}
-          gh workflow run wf3.yml -f stage=dev
+          gh auth status
+          #gh workflow run wf3.yml -f stage=dev
 
