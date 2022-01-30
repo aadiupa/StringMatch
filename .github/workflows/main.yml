@@ -43,6 +43,6 @@ jobs:
       #    gh workflow enable wf3.yml
       #    gh workflow run wf3.yml --ref master -f stage=dev
       - name: trigger with workflow_call
-        uses: ./.github/workflows/wf3.yml
+        uses: aadiupa/StringMatch/.github/workflows/wf3.yml@master
         with:
           stage: dev
