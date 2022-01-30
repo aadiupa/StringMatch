@@ -15,7 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  job2:
+  job1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
@@ -42,7 +42,9 @@ jobs:
       #  run: |
       #    gh workflow enable wf3.yml
       #    gh workflow run wf3.yml --ref master -f stage=dev
-      - name: trigger with workflow_call
-        uses: aadiupa/StringMatch/.github/workflows/wf3.yml@master
-        with:
-          stage: dev
+    
+        
+  job2:
+    uses: ./.github/workflows/wf3.yml
+    with:
+        stage: dev
