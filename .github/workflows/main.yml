@@ -40,5 +40,5 @@ jobs:
           
       - name: run another another workflow
         run: |
-          gh workflow list
+          gh workflow enable wf3.yml
           gh workflow run wf3.yml --ref master -f stage=dev
