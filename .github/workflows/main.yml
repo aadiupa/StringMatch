@@ -38,13 +38,10 @@ jobs:
           gh run list --workflow=wf3.yml
           sleep 5
           
-      #- name: run another another workflow
-      #  run: |
-      #    gh workflow enable wf3.yml
-      #    gh workflow run wf3.yml --ref master -f stage=dev
-    
-        
-  job2:
-    uses: ./.github/workflows/wf3.yml
-    with:
-        stage: dev
+      - name: run another another workflow
+        run: |
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/aadiupa/StringMatch/actions/workflows/18825670/dispatches \
+          -d '{"ref":"master"}'
