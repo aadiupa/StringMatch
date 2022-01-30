@@ -38,10 +38,10 @@ jobs:
           gh run list --workflow=wf3.yml
           sleep 5
           
-      - name: run another another workflow
-        run: |
-          gh workflow enable wf3.yml
-          gh workflow run wf3.yml --ref master -f stage=dev
+      #- name: run another another workflow
+      #  run: |
+      #    gh workflow enable wf3.yml
+      #    gh workflow run wf3.yml --ref master -f stage=dev
       - name: trigger with workflow_call
         uses: ./.github//workflows/wf3.yml
         with:
