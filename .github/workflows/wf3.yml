@@ -2,12 +2,15 @@ name: wf3
 
 # Controls when the workflow will run
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       stage:
         description: 'stage [dev,prod]'
         required: true
         default: 'dev'
+        type: string
+
+
 
   # Allows you to run this workflow manually from the Actions tab
   #workflow_dispatch:
