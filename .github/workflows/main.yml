@@ -42,7 +42,6 @@ jobs:
         run: |
           a=0
           while read -r line; do 
-          echo "$line"
           if [ $a = 1 ]
           then
             sleep 1m
@@ -53,6 +52,7 @@ jobs:
           -H "Authorization: token ${{ secrets.ACTIONS_PAT }}" \
           https://api.github.com/repos/aadiupa/StringMatch/actions/workflows/"$line"/dispatches \
           -d '{"ref":"master"}'
-          a=`expr $a + 1 ; done < ./all_projects
+          a=`expr $a + 1
+          echo "$line" ; done < ./all_projects
         
           
