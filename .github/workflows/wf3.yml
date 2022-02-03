@@ -27,7 +27,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
-      - name: AWS Scripts
+      - if: ${{ github.event.inputs.stage == 'dev' }} 
+        name: AWS Scripts
         run: |
           aws ecr batch-delete-image --repository-name my-repository --image-ids imageTag=tag
       - name: AWS Scripts 2
