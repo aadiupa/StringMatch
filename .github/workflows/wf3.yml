@@ -2,11 +2,12 @@ name: wf3
 
 # Controls when the workflow will run
 on:
-
-
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      stage:
+        description: 'stage [dev,prod]'
+        required: true
+        default: 'dev'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
