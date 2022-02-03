@@ -30,7 +30,7 @@ jobs:
       - name: AWS Scripts
         run: |
           MANIFEST=$(aws ecr batch-get-image --repository-name my-repository --image-ids imageTag=tag --output json | jq --raw-output '.images[0].imageManifest')
-          aws ecr put-image --repository-name my-repository --image-tag latest --image-manifest "$MANIFEST"
+          aws ecr put-image --repository-name my-repository --image-tag "$(git rev-parse --short=12 HEAD)" --image-manifest "$MANIFEST"
           aws ecr describe-images --repository-name my-repository
       
       - name: get output
