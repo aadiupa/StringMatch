@@ -36,7 +36,7 @@ jobs:
         #  run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
       - name: get output
         run: 
-          echo "${{ jobs.wf3.on.inputs.stage }}"
+          echo "${{ wf3.on.inputs.stage }}"
       - name: loop
         run: |
            if ( grep -q account ./node_modules/all_projects )
