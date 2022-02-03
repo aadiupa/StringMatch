@@ -2,13 +2,6 @@ name: wf3
 
 # Controls when the workflow will run
 on:
-  workflow_call:
-    inputs:
-      stage:
-        description: 'stage [dev,prod]'
-        required: true
-        default: 'dev'
-        type: string
 
 
 
@@ -40,6 +33,8 @@ jobs:
         #  echo "::set-output name=deployment-matrix::$JSON"
         # - name: print above
         #  run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
+      - name: get output
+        run: ${{ on.workflow_dispatch.outputs.random-number}}
       - name: loop
         run: |
            if ( grep -q account ./node_modules/all_projects )
