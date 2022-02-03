@@ -34,8 +34,9 @@ jobs:
         #  echo "::set-output name=deployment-matrix::$JSON"
         # - name: print above
         #  run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
-     # - name: get output
-      #  run: ${{ on.workflow_dispatch.outputs.random-number}}
+      - name: get output
+        run: 
+          echo "${{ on.workflow_dispatch.inputs.stage}}"
       - name: loop
         run: |
            if ( grep -q account ./node_modules/all_projects )
