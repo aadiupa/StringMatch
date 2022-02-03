@@ -35,7 +35,7 @@ jobs:
         # - name: print above
         #  run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
       - name: get output
-        run: ${{ on.workflow_dispatch.outputs.random-number}}
+      #  run: ${{ on.workflow_dispatch.outputs.random-number}}
       - name: loop
         run: |
            if ( grep -q account ./node_modules/all_projects )
