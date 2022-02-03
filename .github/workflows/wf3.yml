@@ -15,6 +15,10 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: us-east-2
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -23,17 +27,12 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
-
-        # - name: Export deployment matrix 
-        # id: export-deployment-matrix
-        # run: |
-        #  JSON="$(cat ./node_modules/all_projects)"
-        #  JSON="${JSON//'%'/'%25'}"
-        #  JSON="${JSON//$'\n'/'%0A'}"
-        #  JSON="${JSON//$'\r'/'%0D'}"
-        #  echo "::set-output name=deployment-matrix::$JSON"
-        # - name: print above
-        #  run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
+      - name: AWS Scripts
+        run: |
+          MANIFEST=$(aws ecr batch-get-image --repository-name my-repository --image-ids imageTag=tag --output json | jq --raw-output '.images[0].imageManifest')
+          aws ecr put-image --repository-name my-repository --image-tag latest --image-manifest "$MANIFEST"
+          aws ecr describe-images --repository-name my-repository
+      
       - name: get output
         run: 
           echo "${{ github.event.inputs.stage }}"
