@@ -34,7 +34,7 @@ jobs:
         #  echo "::set-output name=deployment-matrix::$JSON"
         # - name: print above
         #  run: echo "${{ steps.export-deployment-matrix.outputs.deployment-matrix }}"
-      - name: get output
+     # - name: get output
       #  run: ${{ on.workflow_dispatch.outputs.random-number}}
       - name: loop
         run: |
