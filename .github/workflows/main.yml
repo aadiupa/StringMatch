@@ -52,7 +52,7 @@ jobs:
           -H "Authorization: token ${{ secrets.ACTIONS_PAT }}" \
           https://api.github.com/repos/aadiupa/StringMatch/actions/workflows/"$line"/dispatches \
           -d '{"ref":"master"}'
-          a=`expr $a + 1
+          a=`expr $a + 1`
           echo "$line" ; done < ./all_projects
         
           
