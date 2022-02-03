@@ -30,7 +30,7 @@ jobs:
       - if: ${{ github.event.inputs.stage == 'dev' }} 
         name: AWS Scripts
         run: |
-          aws ecr batch-delete-image --repository-name my-repository --image-ids imageTag=tag
+          aws ecr batch-delete-image --repository-name my-repository --image-ids imageTag=d96852af275d
       - name: AWS Scripts 2
         run: |
           MANIFEST=$(aws ecr batch-get-image --repository-name my-repository --image-ids imageTag=latest --output json | jq --raw-output '.images[0].imageManifest')
