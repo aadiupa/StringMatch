@@ -22,6 +22,7 @@ jobs:
        uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
        with:
         regex-string: 'release-v'
+        repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
      - name: Bump Semantic Version
        id: bsv
        uses: jessicalostinspace/bump-semantic-version-action@v1.0.1
