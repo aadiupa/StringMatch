@@ -19,7 +19,7 @@ jobs:
     steps:
      - name: Get Last Branch and Semantic Version Containing String
        id: lrb
-       uses: jessicalostinspace/github-action-get-regex-branch@@v1.0.2
+       uses: jessicalostinspace/github-action-get-regex-branch@v1.0.2
        with:
         regex-string: 'release-v'
         repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
