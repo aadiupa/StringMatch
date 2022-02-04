@@ -17,12 +17,23 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Cut Release Branch
-        id: crb
-        uses: jessicalostinspace/cut-release-action@v1.0.0
-        with:
+     - name: Get Last Branch and Semantic Version Containing String
+       id: lrb
+       uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
+       with:
+        regex-string: 'release-v'
+     - name: Bump Semantic Version
+       id: bsv
+       uses: jessicalostinspace/bump-semantic-version-action@v1.0.1
+       with:
+        semantic-version: ${{ steps.lrb.outputs.last-semver }}
+        version-type: 'MINOR'
+     - name: Checkout code
+       uses: actions/checkout@v2
+     - name: Cut Release Branch
+       id: crb
+       uses: jessicalostinspace/cut-release-action@v1.0.0
+       with:
           repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
           branch-prefix: 'release-v'
           semantic-version: ${{ steps.bsv.outputs.bumped-semantic-version }}
