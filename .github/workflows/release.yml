@@ -21,9 +21,26 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 100
-      - name: Cut a release
-        id: car
+      - name: Get Last Branch and Semantic Version Containing String
+        id: lrb
+        uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
+        with:
+          regex-string: 'release-v'
+      - name: print above things
         run: |
-          git branch
-          git log | grep a51ccbcdd8afeddd4d338827509b43e9be31e646
-          git branch release-v a51ccbcdd8afeddd4d338827509b43e9be31e646
+          echo "last semver ${{ steps.lrb.outputs.last-semver }}"
+          echo "last branch semver ${{ steps.lrb.outputs.last-semver-branch }} "
+        
+      - name: Bump Semantic Version
+        id: bsv
+        uses: jessicalostinspace/bump-semantic-version-action@v1.0.1
+        with:
+          semantic-version: ${{ steps.lrb.outputs.last-semver }}
+          version-type: 'MINOR'
+      - name: Cut Release Branch
+        id: crb
+        uses: jessicalostinspace/cut-release-action@v1.0.0
+        with:
+          repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
+          branch-prefix: 'release-v'
+          semantic-version: ${{ steps.bsv.outputs.bumped-semantic-version }}
