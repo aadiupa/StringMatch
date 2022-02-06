@@ -19,8 +19,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Get Latest Release Branch
-        id: lrb
-        uses: ./
+      - name: Cut Release Branch
+        id: crb
+        uses: jessicalostinspace/cut-release-action@v1.0.0
         with:
-          regex-string: 'release-v'
+          repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
+          branch-prefix: 'release-v'
+          semantic-version: ${{ steps.bsv.outputs.bumped-semantic-version }}
