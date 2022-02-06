@@ -23,10 +23,9 @@ jobs:
           fetch-depth: 100
       - name: Cut a release
         id: car
-        run: |
-          git branch
-          git log | grep a51ccbcdd8afeddd4d338827509b43e9be31e646
-          git branch release-v a51ccbcdd8afeddd4d338827509b43e9be31e646
-          git checkout release-v
-          git push origin release-v
+        uses: peterjgrainger/action-create-branch@v2.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: 'release-v2'
           
