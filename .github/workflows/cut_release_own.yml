@@ -27,4 +27,5 @@ jobs:
           git branch
           git log | grep a51ccbcdd8afeddd4d338827509b43e9be31e646
           git branch release-v a51ccbcdd8afeddd4d338827509b43e9be31e646
-          git branch
+          git checkout release
+          
