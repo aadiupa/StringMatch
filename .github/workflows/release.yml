@@ -17,9 +17,11 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Cut Release Branch
         id: crb
-        uses: jessicalostinspace/cut-release-action@v1.2.0
+        uses: jessicalostinspace/cut-release-action@v1.0.0
         with:
           repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
           branch-prefix: 'release-v'
