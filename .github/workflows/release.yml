@@ -23,4 +23,4 @@ jobs:
           depth: 100
       - name: Cut a release
         id: car
-        run: git branch release-v ebf860ed70ce18f3610970697012435574e98b20
+        run: git branch release-v a51ccbcdd8afeddd4d338827509b43e9be31e646
