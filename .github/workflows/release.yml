@@ -20,7 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          depth: 100
+          fetch-depth: 100
       - name: Cut a release
         id: car
         run: |
