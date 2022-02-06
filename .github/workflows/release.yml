@@ -24,12 +24,6 @@ jobs:
         uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
         with:
           regex-string: 'release-v'
-      - name: Bump Semantic Version
-        id: bsv
-        uses: jessicalostinspace/bump-semantic-version-action@v1.0.1
-        with:
-          semantic-version: ${{ steps.lrb.outputs.last-semver }}
-          version-type: 'MINOR'
       - name: Cut Release Branch
         id: crb
         uses: jessicalostinspace/cut-release-action@v1.0.0
