@@ -21,4 +21,4 @@ jobs:
         uses: actions/checkout@v2
       - name: Cut a release
         id: car
-        run: git branch release-v 7d32573bb9b3c48950893e176745772188b3dfa8
+        run: git branch release-v ebf860ed70ce18f3610970697012435574e98b20
