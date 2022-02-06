@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          depth: 100
       - name: Cut a release
         id: car
         run: git branch release-v ebf860ed70ce18f3610970697012435574e98b20
