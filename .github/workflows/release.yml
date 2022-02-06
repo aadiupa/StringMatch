@@ -24,6 +24,11 @@ jobs:
         uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
         with:
           regex-string: 'release-v'
+      - name: print above things
+        run: |
+          echo "last semver ${{ steps.lrb.outputs.last-semver }}"
+          echo "last branch semver ${{ steps.lrb.outputs.last-semver-branch }} "
+        
       - name: Bump Semantic Version
         id: bsv
         uses: jessicalostinspace/bump-semantic-version-action@v1.0.1
