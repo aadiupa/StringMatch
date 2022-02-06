@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Cut Release Own
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: 'release version'
+        required: true
+        default: 'release-'
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - name: Cut a release
+        id: car
+        run: |
+          git branch
+          git log | grep a51ccbcdd8afeddd4d338827509b43e9be31e646
+          git branch release-v a51ccbcdd8afeddd4d338827509b43e9be31e646
