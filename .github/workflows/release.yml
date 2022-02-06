@@ -17,20 +17,6 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-     - name: Get Last Branch and Semantic Version Containing String
-       id: lrb
-       uses: jessicalostinspace/github-action-get-regex-branch@v1.0.2
-       with:
-        regex-string: 'release-v'
-        repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
-     - name: Bump Semantic Version
-       id: bsv
-       uses: jessicalostinspace/bump-semantic-version-action@v1.0.1
-       with:
-        semantic-version: ${{ steps.lrb.outputs.last-semver }}
-        version-type: 'MINOR'
-     - name: Checkout code
-       uses: actions/checkout@v2
      - name: Cut Release Branch
        id: crb
        uses: jessicalostinspace/cut-release-action@v1.0.0
