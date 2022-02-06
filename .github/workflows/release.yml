@@ -10,7 +10,7 @@ on:
       stage:
         description: 'release version'
         required: true
-        default: 'dev'
+        default: 'release-'
 
 jobs:
   build:
@@ -19,26 +19,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Get Last Branch and Semantic Version Containing String
-        id: lrb
-        uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
-        with:
-          regex-string: 'release-v'
-      - name: print above things
-        run: |
-          echo "last semver ${{ steps.lrb.outputs.last-semver }}"
-          echo "last branch semver ${{ steps.lrb.outputs.last-semver-branch }} "
-        
-      - name: Bump Semantic Version
-        id: bsv
-        uses: jessicalostinspace/bump-semantic-version-action@v1.0.1
-        with:
-          semantic-version: ${{ steps.lrb.outputs.last-semver }}
-          version-type: 'MINOR'
-      - name: Cut Release Branch
-        id: crb
-        uses: jessicalostinspace/cut-release-action@v1.0.0
-        with:
-          repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
-          branch-prefix: 'release-v'
-          semantic-version: ${{ steps.bsv.outputs.bumped-semantic-version }}
+      - name: Cut a release
+        id: car
+        run: git branch release-v 7d32573bb9b3c48950893e176745772188b3dfa8
