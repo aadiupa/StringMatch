@@ -1,0 +1,56 @@
+name: Cut Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      commitid:
+        description: 'Enter the Commit_ID from where release needs to be cut. If no input given, release will be cut from the current HEAD by default'
+        default: ''
+        required: false
+      stage:
+        description: 'Release Type- major, minor, patch'
+        type: choice
+        required: true
+        options:
+          - major
+          - minor
+          - patch
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: install Lerna
+        run: npm install -g lerna@3.22.1
+
+      - name: Fetch the last release and output new release name
+        run: |
+          last_release=$(echo $(git branch -r | grep release-v | grep -E '([0-9]){0}[0-9]' | sort --version-sort | tail -n 1 | sed -e 's/^ *//g' -e 's|.*\/||'))  
+          if [[ $last_release == '' ]]; then last_release='release-v1.0.0'; fi
+          chmod +x ./devops-scripts/version-update.sh
+          echo "BRANCH_NAME=$(bash ./devops-scripts/version-update.sh $last_release ${{ github.event.inputs.stage }} )" >> $GITHUB_ENV
+
+      - name: Cut a release
+        id: cad
+        run: |
+           git config user.name github-actions
+           git config user.email github-actions@github.com
+           git branch ${{ env.BRANCH_NAME }} ${{ github.event.inputs.commitid }}
+           git checkout ${{ env.BRANCH_NAME }}
+           git branch
+           git push --set-upstream origin ${{ env.BRANCH_NAME }}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ env.BRANCH_NAME }}
+          release_name: Release ${{ env.BRANCH_NAME }}
